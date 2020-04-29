@@ -104,5 +104,5 @@ ax4.set_ylabel('GPP [PgC yr-1]')
 ax8.set_ylabel('GPP [PgC yr-1]')
 
 ax1.legend(loc='upper center', bbox_to_anchor=(1.55, -2.5), ncol=7)
-plt.show()   
+# plt.show()   
 plt.savefig('total_GPP_australia_trendy7.png', dpi = 400)   
