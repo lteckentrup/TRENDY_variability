@@ -28,7 +28,7 @@ module unload cdo
 module load cdo/1.6.1
 
 for model in CLASS-CTEM JSBACH; do
-    cdo -b F64 -L -selyear,2000/2017 -remapycon,../fine_grid.txt \
+    cdo -b F64 -L -selyear,2000/2017 -remapcon,../fine_grid.txt \
          ../../S2_new/gpp/$model'_'S2_gpp.nc obs/$model'_'S2_gpp_2000-2017.nc
 done
 
