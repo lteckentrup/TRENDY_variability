@@ -56,13 +56,13 @@ def mask(var, veg_mask, modelname):
     model_masked = np.ma.array(model, 
                                 mask = model*veg_mask[np.newaxis,:,:])
     
-    annual_model = []
+    timeseries_model = []
     
     for i in range(0,16):
-        year_model = model_masked[i,:,:].sum()                 
-        annual_model.append(year_model)
+        sum_model = model_masked[i,:,:].sum()                 
+        timeseries_model.append(sum_model)
     
-    return(annual_model)
+    return(timeseries_model)
           
 model_names = ['CABLE-POP', 'CLASS-CTEM', 'CLM5.0', 'DLEM', 'ISAM', 'JSBACH', 
                'LPJ', 'LPJ-GUESS', 'LPX', 'OCN', 'ORCHIDEE', 'ORCHIDEE-CNP', 
@@ -104,5 +104,5 @@ ax4.set_ylabel('GPP [PgC yr-1]')
 ax8.set_ylabel('GPP [PgC yr-1]')
 
 ax1.legend(loc='upper center', bbox_to_anchor=(1.55, -2.5), ncol=7)
-#plt.show()   
+plt.show()   
 plt.savefig('total_GPP_australia_trendy7.png', dpi = 400)   
