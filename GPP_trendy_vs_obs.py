@@ -3,7 +3,7 @@ import netCDF4 as nc
 import matplotlib.pyplot as plt
 
 pathwayIN_trendy = '../../TRENDY/IOD_detrend_new/gpp/obs/'
-pathwayIN_gosif = '/srv/ccrc/data02/z5227845/research/SIF/Australia/'
+pathwayIN_gosif = '/srv/ccrc/data02/z5227845/research/SIF/TRENDY_comparison/'
  
 data_vegetation_mask = nc.Dataset('../IOD_detrend_new/vegetation_mask.nc')
 vegetation_mask = data_vegetation_mask.variables['land_cover'][:,:]
