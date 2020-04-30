@@ -1,11 +1,21 @@
 ### Comparison with GOSIF-GPP
-for model in CABLE-POP CLM5.0 OCN ORCHIDEE-CNP ORCHIDEE SURFEX; do
+for model in CABLE-POP OCN ORCHIDEE-CNP ORCHIDEE SDGVM; do
+    cdo -b F64 -L -selyear,2000/2017 -remapycon,../fine_grid.txt -invertlat \
+         ../../S2_new/gpp/$model'_'S2_gpp.nc obs/$model'_'S2_gpp_2000-2017.nc
+done
+
+for model in CLM5.0 SURFEX; do
     cdo -b F64 -L -selyear,2000/2017 -remapycon,../fine_grid.txt \
          ../../S2_new/gpp/$model'_'S2_gpp.nc obs/$model'_'S2_gpp_2000-2017.nc
 done
 
-for model in DLEM ISAM LPJ LPJ-GUESS LPX VISIT; do
+for model in ISAM LPJ LPJ-GUESS LPX; do
     cdo -b F64 -L -selyear,2000/2017 ../../S2_new/gpp/$model'_'S2_gpp.nc \
+    obs/$model'_'S2_gpp_2000-2017.nc
+done
+
+for model in DLEM VISIT; do
+    cdo -b F64 -L -selyear,2000/2017 -invertlat ../../S2_new/gpp/$model'_'S2_gpp.nc \
     obs/$model'_'S2_gpp_2000-2017.nc
 done
 
