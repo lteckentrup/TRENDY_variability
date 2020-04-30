@@ -8,7 +8,7 @@ def sftpgrab(var, exp, model, suffix):
     if model == 'CLASS-CTEM':
         remotepath='/output/'+model+'/'+exp+'/'+model+'_'+exp+'_monthly_'+var+suffix    
         localpath=pathwayLOCAL+exp+'/'+var+'/'+model+'_'+exp+'_'+var+suffix 
-    elif model == 'LPEX':
+    elif model == 'LPX':
         remotepath='/output/'+model+'-Bern/'+exp+'/'+model+'_'+exp+'_monthly_'+var+suffix    
         localpath=pathwayLOCAL+exp+'/'+var+'/'+model+'_'+exp+'_'+var+suffix 
     elif var == 'lai':
