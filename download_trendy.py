@@ -12,7 +12,7 @@ def sftpgrab(var, exp, model, suffix):
             remotepath='/output/'+model+'/'+exp+'/'+model+'_'+exp+'_monthly_'+var+suffix    
             localpath=pathwayLOCAL+exp+'/'+var+'/'+model+'_'+exp+'_'+var+suffix 
     elif model == 'LPX':
-        remotepath='/output/'+model+'-Bern/'+exp+'/'+model+'_'+exp+'_monthly_'+var+suffix    
+        remotepath='/output/'+model+'-Bern/'+exp+'/'+model+'_'+exp+'_'+var+suffix    
         localpath=pathwayLOCAL+exp+'/'+var+'/'+model+'_'+exp+'_'+var+suffix 
     elif var == 'lai':
         if model in ('JSBACH', 'LPJ-GUESS'):
