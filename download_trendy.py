@@ -1,3 +1,9 @@
+import pysftp as sftp
+
+pathwayLOCAL = '/srv/ccrc/data02/z5227845/research/TRENDY/'
+def sftpgrab(var, exp, model, suffix):
+    s = sftp.Connection(server, username=xxx, 
+                        password=yyy)
     if model == 'CLASS-CTEM':
         if var == 'lai':
             remotepath='/output/'+model+'/'+exp+'/'+model+'_'+exp+'_monthly_perpft_'+var+suffix    
