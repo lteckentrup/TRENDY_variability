@@ -133,10 +133,9 @@ veg_masks = [total_mask, tropics_mask, savanna_mask, warm_temperate_mask,
               cool_temperate_mask, mediterranean_mask, desert_mask]
 titles = ['Total', 'Tropics', 'Savanna', 'Warm temperate', 'Cool temperate', 
           'Mediterranean', 'Desert']
-
 modelz = ['CABLE-POP', 'CLASS-CTEM', 'CLM5.0', 'DLEM', 'ISAM', 'JSBACH', 
-                'LPJ', 'LPJ-GUESS', 'LPX', 'OCN', 'ORCHIDEE', 'ORCHIDEE-CNP', 
-                'SDGVM', 'SURFEX', 'VISIT']
+          'LPJ', 'LPJ-GUESS', 'LPX', 'OCN', 'ORCHIDEE', 'ORCHIDEE-CNP', 
+          'SDGVM', 'SURFEX', 'VISIT']
 colours = ['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple', 
             'tab:brown', 'tab:pink', 'tab:grey', 'tab:olive', 'tab:cyan', 
             'coral', 'goldenrod', 'purple', 'navy', 'darkslategrey']     
