@@ -53,7 +53,7 @@ def mask(var, veg_mask, modelname, time_res, scaled):
         gridarea_masked = np.ma.array(gridarea, 
                                       mask = gridarea*veg_mask[np.newaxis,:,:])
         
-        if scaled == 'yes':
+        if scaled == True:
             DATA = nc.Dataset(pathwayIN+var+'/'+var+
                               '_1901-2015_'+time_res+'_australia.nc')  
         else:
@@ -61,7 +61,7 @@ def mask(var, veg_mask, modelname, time_res, scaled):
                               '_1901-2015_anomaly_'+time_res+'_australia.nc')            
         
     else:
-        if scaled == 'yes':
+        if scaled == True:
             DATA = nc.Dataset(pathwayIN+var+'/sh_year/'+modelname+'_S2_'+var+
                               '_australia_'+time_res+'_area_weighted.nc')
         else:
@@ -94,7 +94,7 @@ def mask(var, veg_mask, modelname, time_res, scaled):
                 sum_data = data_masked[i,:,:].sum()                 
                 timeseries_data.append(sum_data)
                 
-    if scaled == 'yes':
+    if scaled == True:
         timeseries_data_scaled = (timeseries_data - min(timeseries_data))/ \
                                  (max(timeseries_data) - min(timeseries_data))
         return(timeseries_data_scaled)
@@ -143,7 +143,7 @@ colours = ['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple',
 
 for a, vm, t in zip(axes, veg_masks, titles):
     for m, c in zip(modelz, colours):
-        regression_magic('annual', 'yes', 'prec', 'gpp', m, vm, a, c)
+        regression_magic('annual', True, 'prec', 'gpp', m, vm, a, c)
 
     a.set_title(t)
 for ax in (ax4, ax6, ax8):
