@@ -20,7 +20,6 @@ for model in DLEM VISIT; do
 done
 
 for model in CABLE-POP CLM5.0 DLEM ISAM LPJ-GUESS LPJ LPX OCN ORCHIDEE-CNP ORCHIDEE SURFEX VISIT; do
-for model in DLEM VISIT; do
     cdo -b F64 -L -divc,1e+12 -ymonmean -selyear,2001/2017 -mulc,86400 -muldpm \
         -sellonlatbox,112.25,153.75,-43.75,-10.25 \
         -mul obs/$model'_'S2_gpp_2000-2017.nc -gridarea \
@@ -28,7 +27,7 @@ for model in DLEM VISIT; do
         obs/$model'_'S2_gpp_australia_climatology_area_weighted.nc
         
     cdo -b F64 -L -divc,1e+12 -yearsum -mulc,86400 -muldpm \
-        -settaxis,2000-01-01,00:00,1month -seldate,2000-07-16,2017-06-16 \
+        -settaxis,2000-01-01,00:00,1month -seldate,2000-07-01,2017-06-30 \
         -sellonlatbox,112.25,153.75,-43.75,-10.25 \
         -mul obs/$model'_'S2_gpp_2000-2017.nc -gridarea \
         obs/$model'_'S2_gpp_2000-2017.nc \
@@ -43,7 +42,7 @@ for model in SDGVM; do
         obs/$model'_'S2_gpp_australia_climatology_area_weighted.nc
         
     cdo -b F64 -L -divc,1e+12 -yearsum -mulc,86400 -muldpm \
-        -settaxis,2000-01-01,00:00,1month -seldate,2000-07-16,2017-06-16 \
+        -settaxis,2000-01-01,00:00,1month -seldate,2000-07-01,2017-06-30 \
         -sellonlatbox,292.25,333.75,-43.75,-10.25 \
         -mul obs/$model'_'S2_gpp_2000-2017.nc -gridarea \
         obs/$model'_'S2_gpp_2000-2017.nc \
@@ -66,7 +65,7 @@ for model in CLASS-CTEM JSBACH; do
         obs/$model'_'S2_gpp_australia_climatology_area_weighted.nc
 
     cdo -b F64 -L -divc,1e+12 -yearsum -mulc,86400 -muldpm \
-        -settaxis,2000-01-01,00:00,1month -seldate,2000-07-16,2017-06-16 \
+        -settaxis,2000-01-01,00:00,1month -seldate,2000-07-01,2017-06-30 \
         -sellonlatbox,112.25,153.75,-43.75,-10.25 \
         -mul obs/$model'_'S2_gpp_2000-2017.nc -gridarea \
         obs/$model'_'S2_gpp_2000-2017.nc \
