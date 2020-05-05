@@ -23,7 +23,7 @@ def regression_map(model, position, met_var, met_var_name):
     GPP = nc.Dataset(pathwayIN+'gpp/sh_year/'+model+
                      '_S2_gpp_anomaly_area_weighted.nc') 
 
-    if model == 'ISAM':
+    if model in ('ISAM', 'LPX'):
         lat = GPP.variables['latitude'][4:]
         lon = GPP.variables['longitude'][:]
     else:   
