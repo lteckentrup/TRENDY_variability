@@ -99,8 +99,6 @@ modelz = ['CABLE-POP', 'CLASS-CTEM', 'CLM5.0', 'DLEM', 'ISAM', 'JSBACH',
           'SDGVM', 'SURFEX', 'VISIT']
 positions = [1, 2, 3, 4, 5, 6, 7 ,8 , 9, 10, 11, 12, 13, 14, 15]
 
-# regression_map('CABLE-POP', 1, 1, 'Precipitation')
-# regression_map('SDGVM', 1, 0, 'Temperature')
 for m, p in zip(modelz, positions):
     regression_map(m, p, 0, '$R^2$')
     # regression_map(m, p, 1, '$R^2_P$')
