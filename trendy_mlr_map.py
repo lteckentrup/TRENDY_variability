@@ -14,28 +14,28 @@ pathwayIN = '../../TRENDY/IOD_detrend_new/'
 TEMP = nc.Dataset(pathwayIN+'temp/temp_1901-2015_anomaly_annual_australia.nc')  
 PREC = nc.Dataset(pathwayIN+'prec/prec_1901-2015_anomaly_annual_australia.nc')  
 
-temp = TEMP.variables['temp'][60:,:,:]
-prec = PREC.variables['prec'][60:,:,:]
+temp = TEMP.variables['temp'][60:,4:,:]
+prec = PREC.variables['prec'][60:,4:,:]
 
 def regression_map(model, position, met_var, met_var_name):
     GPP = nc.Dataset(pathwayIN+'gpp/sh_year/'+model+
                      '_S2_gpp_anomaly_area_weighted.nc') 
 
     if model in ('ISAM', 'LPX'):
-        lat = GPP.variables['latitude'][:]
+        lat = GPP.variables['latitude'][4:]
         lon = GPP.variables['longitude'][:]
     else:   
-        lat = GPP.variables['lat'][:]
+        lat = GPP.variables['lat'][4:]
         lon = GPP.variables['lon'][:]
         
-    gpp = GPP.variables['gpp'][60:,:,:]
+    gpp = GPP.variables['gpp'][60:,4:,:]
     
     matrix_gpp = np.zeros((len(lat), len(lon)))    
     for x in range(len(lat)):
         for y in range(len(lon)):   
-            df_clim = pd.DataFrame(temp,columns=['temp'])
-            df_clim['prec'] = pd.DataFrame(prec,columns=['prec'])
-            df_clim['gpp'] = pd.DataFrame(gpp,columns=['gpp'])
+            df_clim = pd.DataFrame(temp[:,x,y],columns=['temp'])
+            df_clim['prec'] = pd.DataFrame(prec[:,x,y],columns=['prec'])
+            df_clim['gpp'] = pd.DataFrame(gpp[:,x,y],columns=['gpp'])
             # df_clim = df_clim[(df_clim[['temp','prec']] != 0).all(axis=1)]
     
             # X = df_clim[['temp', 'prec']]
@@ -50,7 +50,7 @@ def regression_map(model, position, met_var, met_var_name):
                 # pred = lin_reg_mod.predict(X_test)
                 lm1 = smf.ols(formula='gpp ~ prec + temp', data=df_clim).fit()
 
-                matrix_gpp[x,y] = lm1.params[met_var]
+                matrix_gpp[x,y] = lm1.rsquared
                 
                 # if lm1.pvalues[met_var] < 0.05:
                 #     matrix_gpp[x,y] = lm1.params[met_var]
@@ -58,10 +58,8 @@ def regression_map(model, position, met_var, met_var_name):
                 #     matrix_gpp[x,y] = np.nan
     
             except (ValueError):
-                nanibert = 0
+                nanibert = np.nan
                 matrix_gpp[x][y] = nanibert
-        
-    matrix_gpp = np.where(matrix_gpp == 0, np.nan, matrix_gpp)
 
     plt.subplot(4, 4, position)
 
@@ -104,7 +102,7 @@ positions = [1, 2, 3, 4, 5, 6, 7 ,8 , 9, 10, 11, 12, 13, 14, 15]
 # regression_map('CABLE-POP', 1, 1, 'Precipitation')
 # regression_map('SDGVM', 1, 0, 'Temperature')
 for m, p in zip(modelz, positions):
-    regression_map(m, p, 0, '$R^2_T$')
+    regression_map(m, p, 0, '$R^2$')
     # regression_map(m, p, 1, '$R^2_P$')
     
 # plt.show()
