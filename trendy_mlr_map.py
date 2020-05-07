@@ -14,21 +14,21 @@ pathwayIN = '../../TRENDY/IOD_detrend_new/'
 TEMP = nc.Dataset(pathwayIN+'temp/temp_1901-2015_anomaly_annual_australia.nc')  
 PREC = nc.Dataset(pathwayIN+'prec/prec_1901-2015_anomaly_annual_australia.nc')  
 
-temp = TEMP.variables['temp'][60:,4:,:]
-prec = PREC.variables['prec'][60:,4:,:]
+temp = TEMP.variables['temp'][60:,:,:]
+prec = PREC.variables['prec'][60:,:,:]
 
 def regression_map(model, position, met_var, met_var_name):
     GPP = nc.Dataset(pathwayIN+'gpp/sh_year/'+model+
                      '_S2_gpp_anomaly_area_weighted.nc') 
 
     if model in ('ISAM', 'LPX'):
-        lat = GPP.variables['latitude'][4:]
+        lat = GPP.variables['latitude'][:]
         lon = GPP.variables['longitude'][:]
     else:   
-        lat = GPP.variables['lat'][4:]
+        lat = GPP.variables['lat'][:]
         lon = GPP.variables['lon'][:]
         
-    gpp = GPP.variables['gpp'][60:,4:,:]
+    gpp = GPP.variables['gpp'][60:,:,:]
     
     matrix_gpp = np.zeros((len(lat), len(lon)))    
     for x in range(len(lat)):
@@ -60,8 +60,10 @@ def regression_map(model, position, met_var, met_var_name):
             except (ValueError):
                 nanibert = np.nan
                 matrix_gpp[x][y] = nanibert
+        
+    # matrix_gpp = np.where(matrix_gpp == 0, np.nan, matrix_gpp)
 
-    plt.subplot(4, 4, position)
+    plt.subplot(3, 5, position)
 
     if model == 'SDGVM':
         lon = lon + 180
@@ -76,8 +78,8 @@ def regression_map(model, position, met_var, met_var_name):
     cut_data = matrix_gpp[:-1, :-1]
     
     plt.title(model)
-    plt.subplots_adjust(top=0.98, left=0.02, right=0.98, bottom=0.08, 
-                        wspace=0.03, hspace=0.08)
+    plt.subplots_adjust(top=0.95, left=0.02, right=0.98, bottom=0.10, 
+                        wspace=0.03, hspace=0.15)
     cmap = plt.cm.gist_rainbow
 
     cmaplist = [cmap(i) for i in range(cmap.N)]
@@ -92,7 +94,7 @@ def regression_map(model, position, met_var, met_var_name):
                   orientation='horizontal')
     cbar.set_label(met_var_name,fontsize=11)
     
-fig, ax = plt.subplots(figsize=(8,8))
+fig, ax = plt.subplots(figsize=(14,7.5))
 
 modelz = ['CABLE-POP', 'CLASS-CTEM', 'CLM5.0', 'DLEM', 'ISAM', 'JSBACH', 
           'LPJ', 'LPJ-GUESS', 'LPX', 'OCN', 'ORCHIDEE', 'ORCHIDEE-CNP', 
