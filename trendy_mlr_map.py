@@ -28,7 +28,7 @@ def regression_map(model, position, met_var, met_var_name):
         lat = GPP.variables['lat'][:]
         lon = GPP.variables['lon'][:]
         
-    gpp = GPP.variables['gpp'][60:,:,:]*1000
+    gpp = GPP.variables['gpp'][60:,:,:]
     
     matrix_gpp = np.zeros((len(lat), len(lon)))    
     for x in range(len(lat)):
