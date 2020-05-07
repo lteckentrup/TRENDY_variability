@@ -39,7 +39,6 @@ def regression_map(model, position, met_var, met_var_name):
             df_clim = pd.DataFrame(temp[:,x,y],columns=['temp'])
             df_clim['prec'] = pd.DataFrame(prec[:,x,y],columns=['prec'])
             df_clim['gpp'] = pd.DataFrame(gpp[:,x,y],columns=['gpp'])
-            df_clim = df_clim[(df_clim[['temp','prec']] != 0).all(axis=1)]
     
             X = df_clim[['temp', 'prec']]
             Y = df_clim['gpp']
