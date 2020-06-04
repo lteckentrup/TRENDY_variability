@@ -6,26 +6,28 @@ def sftpgrab(var, exp, model, suffix):
                         password=yyy)
     if model == 'CLASS-CTEM':
         if var == 'lai':
-            remotepath='/output/'+model+'/'+exp+'/'+model+'_'+exp+'_monthly_perpft_'+var+suffix    
-            localpath=pathwayLOCAL+exp+'/'+var+'/'+model+'_'+exp+'_'+var+suffix 
+            remotepath='/output/'+model+'/'+exp+'/'+model+'_'+exp+'_monthly_perpft_'+var+suffix
+            localpath=pathwayLOCAL+exp+'/'+var+'/'+model+'_'+exp+'_'+var+suffix
         else:
-            remotepath='/output/'+model+'/'+exp+'/'+model+'_'+exp+'_monthly_'+var+suffix    
-            localpath=pathwayLOCAL+exp+'/'+var+'/'+model+'_'+exp+'_'+var+suffix 
+            remotepath='/output/'+model+'/'+exp+'/'+model+'_'+exp+'_monthly_'+var+suffix
+            localpath=pathwayLOCAL+exp+'/'+var+'/'+model+'_'+exp+'_'+var+suffix
     elif model == 'LPX':
-        remotepath='/output/'+model+'-Bern/'+exp+'/'+model+'_'+exp+'_'+var+suffix    
-        localpath=pathwayLOCAL+exp+'/'+var+'/'+model+'_'+exp+'_'+var+suffix 
+        remotepath='/output/'+model+'-Bern/'+exp+'/'+model+'_'+exp+'_'+var+suffix
+        localpath=pathwayLOCAL+exp+'/'+var+'/'+model+'_'+exp+'_'+var+suffix
+    elif model == 'ORCHIDEE-CNP':
+        remotepath='/output/'+model+'/'+exp+'_new/'+model+'_'+exp+'_'+var+suffix
+        localpath=pathwayLOCAL+exp+'/'+var+'/'+model+'_'+exp+'_'+var+suffix
     elif var == 'lai':
         if model in ('JSBACH', 'LPJ-GUESS'):
-            remotepath='/output/'+model+'/'+exp+'/'+model+'_'+exp+'_'+var+'pft'+suffix    
-            localpath=pathwayLOCAL+exp+'/'+var+'/'+model+'_'+exp+'_'+var+suffix 
+            remotepath='/output/'+model+'/'+exp+'/'+model+'_'+exp+'_'+var+'pft'+suffix
+            localpath=pathwayLOCAL+exp+'/'+var+'/'+model+'_'+exp+'_'+var+suffix
         else:
-            remotepath='/output/'+model+'/'+exp+'/'+model+'_'+exp+'_'+var+suffix    
-            localpath=pathwayLOCAL+exp+'/'+var+'/'+model+'_'+exp+'_'+var+suffix     
+            remotepath='/output/'+model+'/'+exp+'/'+model+'_'+exp+'_'+var+suffix
+            localpath=pathwayLOCAL+exp+'/'+var+'/'+model+'_'+exp+'_'+var+suffix
     else:
-        remotepath='/output/'+model+'/'+exp+'/'+model+'_'+exp+'_'+var+suffix    
-        localpath=pathwayLOCAL+exp+'/'+var+'/'+model+'_'+exp+'_'+var+suffix             
+        remotepath='/output/'+model+'/'+exp+'/'+model+'_'+exp+'_'+var+suffix
+        localpath=pathwayLOCAL+exp+'/'+var+'/'+model+'_'+exp+'_'+var+suffix
 
-    
     rem_paths = (remotepath)
     loc_paths = (localpath)
     
